@@ -39,12 +39,9 @@ struct Person_IMPL {
 @interface Person : NSObject
 {
 @public
-    int _no;
     int _age;
+    int _number;
     int _name;
-//    int _name1;
-//    int _name2;
-//    NSString *_name;
 }
 @end
 @implementation  Person
@@ -60,9 +57,9 @@ int main(int argc, const char * argv[]) {
         // 8
         // Class's ivar size rounded up to a pointer-size boundary.
         // 类的成员变量size
-//        NSLog(@"%zd", class_getInstanceSize([NSObject class]));
-//        // 16
-//        NSLog(@"%zd", malloc_size((__bridge const void *)(obj)));
+        NSLog(@"%zd", class_getInstanceSize([NSObject class]));
+        // 16
+        NSLog(@"%zd", malloc_size((__bridge const void *)(obj)));
         
         /**
          一个NSObject对象占多少内存呢？
