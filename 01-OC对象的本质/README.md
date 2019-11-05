@@ -153,6 +153,13 @@ struct Person_IMPL {
 1个 NSObject 对象占用了16个字节
 1个自定义对象占用了几个字节, 需要有多少成员变量, 同时还要计算上 NSObject 的 isa 指针大小, 同时为了对齐, 必须是16的倍数
 
+## 4.注意点
+    - 如果自定义类有继承关系, 如 Student 继承于 Person
+    - 注意内存对齐问题
+
+
 参考:
 https://www.jianshu.com/p/c22279cba38d
 https://juejin.im/post/5abdd56df265da2396127e6b
+https://www.iteye.com/blog/jakend-1839987
+https://github.com/ludx/The-Lost-Art-of-C-Structure-Packing
