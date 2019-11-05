@@ -1,7 +1,6 @@
 # iOS一个对象占用多少空间?
 
-GitHub 地址:<br>
-https://github.com/yangyu2010/Objective-C/tree/master/Interview001-OC对象的本质
+[GitHub 地址](https://github.com/yangyu2010/Objective-C/tree/master/Interview001-OC对象的本质)
 
 
 ## 1.获取 NSObject 对象占用的空间
@@ -51,7 +50,7 @@ size_t class_getInstanceSize(Class cls)
         return word_align(unalignedInstanceSize());
     }
 ```
-可以参照 https://juejin.im/post/5abdd56df265da2396127e6b 把.m文件编译成.cpp文件, 查看 NSObject真正的实现, 可以理解是对应 c++ 里的结构体
+可以参照 [这篇文章](https://juejin.im/post/5abdd56df265da2396127e6b) 把.m文件编译成.cpp文件, 查看 NSObject真正的实现, 可以理解是对应 c++ 里的结构体
 
 我的 GitHub 里有已经编译后的.cpp文件 大家可以查看
 
@@ -149,3 +148,11 @@ struct Person_IMPL {
 ```
 可以看出 class_getInstanceSize 已经是8*3=24字节了
 但是 malloc_size 却是 32了, 因为是以16为基数来扩容的
+
+## 3.结论
+1个 NSObject 对象占用了16个字节
+1个自定义对象占用了几个字节, 需要有多少成员变量, 同时还要计算上 NSObject 的 isa 指针大小, 同时为了对齐, 必须是16的倍数
+
+参考:
+https://www.jianshu.com/p/c22279cba38d
+https://juejin.im/post/5abdd56df265da2396127e6b
