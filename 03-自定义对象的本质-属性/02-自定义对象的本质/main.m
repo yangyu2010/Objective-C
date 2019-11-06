@@ -28,11 +28,12 @@ struct Person_IMPL {
 // Person
 @interface Person : NSObject
 {
-    int _age;
+    @public
     char _sex;
+    int _age;
     char _sex2;
-    short _sex3;
-    char _sex4;
+//    short _sex3;
+//    char _sex4;
 
 }
 //@property(nonatomic, copy) NSString *name;
@@ -48,6 +49,10 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
         Person *p = [[Person alloc] init];
+        p->_sex = 'c';
+        p->_age = 12;
+        p->_sex2 = 'b';
+        
         NSLog(@"Person - %zd", class_getInstanceSize([Person class]));
         NSLog(@"Person - %zd", malloc_size((__bridge const void *)(p)));
         
