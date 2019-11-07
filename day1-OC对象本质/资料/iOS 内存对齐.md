@@ -187,7 +187,7 @@ struct Person {
 打印得出的是16
 分析:
 
-- Bool 类型占1个字节, 对齐长度也是1个字节
+- Bool 类型占1个字节, 对齐长度也是1个字节([详细文档](https://github.com/yangyu2010/Objective-C/blob/master/资料/Swift%20基础类型长度.xlsx))
 - Int 类型占8个字节, 对齐长度是8个字节
 - 那说明 gender 后面有7个字节是浪费的, 因为 Int 对齐长度是8
 - 如果反着来, 把 age 放上面, 打印的是 9

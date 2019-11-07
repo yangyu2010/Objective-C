@@ -46,13 +46,22 @@ size_t class_getInstanceSize(Class cls)
 }
 
 // Class's ivar size rounded up to a pointer-size boundary.
-    uint32_t alignedInstanceSize() {
-        return word_align(unalignedInstanceSize());
-    }
+uint32_t alignedInstanceSize() {
+    return word_align(unalignedInstanceSize());
+}
+
+size_t instanceSize(size_t extraBytes) {
+    size_t size = alignedInstanceSize() + extraBytes;
+    // CF requires all objects be at least 16 bytes.
+    if (size < 16) size = 16;
+    return size;
+}
 ```
+6. 那为什么会分配16个字节了? 也是在 runtime 里找到了答案, 当 size < 16 时, 会默认分配16个字节
+
 可以参照 [这篇文章](https://juejin.im/post/5abdd56df265da2396127e6b) 把.m文件编译成.cpp文件, 查看 NSObject真正的实现, 可以理解是对应 c++ 里的结构体
 
-我的 GitHub 里有已经编译后的.cpp文件 大家可以查看
+我的 [GitHub](https://github.com/yangyu2010/Objective-C/tree/master/Interview001-OC对象的本质) 里有已经编译后的.cpp文件 大家可以查看
 
 
 ## 2. 自定义对象占用的空间
@@ -119,7 +128,7 @@ struct Person_IMPL {
 };
 ```
 
-5. 自定义对象包含了
+5. 这时自定义对象包含了
     
     - 1个结构体指针 (8字节)
     - 1个 int _age (4字节)
@@ -127,10 +136,9 @@ struct Person_IMPL {
 
    8 + 4 + 4 = 16 字节
 
-   没有添加任何成员变量时, 只有1个结构体指针, 所以会是8字节
-   所以 class_getInstanceSize 会是8, class_getInstanceSize 是16, 就是说开辟了16个字节, 但是该实例对象只使用了8字节
-
-   添加1个成员变量时, 有1个结构体指针, 和1个 int 类型的值, 那就是 8 + 4 = 12啊, 为什么 class_getInstanceSize 得到的结果是16了. 其实扩容基数是8, 8个字节不够了, 就开辟了8*2个字节, 依此类推
+- 没有添加任何成员变量时, 只有1个结构体指针, 所以会是8字节
+- 添加1个成员变量时, 有1个结构体指针, 和1个 int 类型的值, 那就是 8 + 4 = 12, 为什么 class_getInstanceSize 得到的结果是16了. 其实扩容基数是8(内存对齐原因, 结构体的大小必须是最大成员大小的倍数), 8个字节不够了, 就开辟了8*2个字节, 依此类推
+- 添加了2个成员变量时, 有1个结构体指针, 和2个 int 类型的值,那就是 8 + 4 + 4 = 16
 
 6. 再添加一个成员变量
 ```
@@ -147,15 +155,15 @@ struct Person_IMPL {
 2019-11-05 15:48:24.959120+0800 Interview001-OC对象的本质[9511:896453] 32
 ```
 可以看出 class_getInstanceSize 已经是8*3=24字节了
-但是 malloc_size 却是 32了, 因为是以16为基数来扩容的
+但是 malloc_size 却是 32了, 因为是以16为基数来扩容的, 因为 iOS 在分配对象内存时, 都是以16倍数来分配的
 
 ## 3.结论
-1个 NSObject 对象占用了16个字节
-1个自定义对象占用了几个字节, 需要有多少成员变量, 同时还要计算上 NSObject 的 isa 指针大小, 同时为了对齐, 必须是16的倍数
+ - 1个 NSObject 对象占用了16个字节
+ - 1个自定义对象占用了几个字节, 需要有多少成员变量, 同时还要计算上 NSObject 的 isa 指针大小, 同时为了对齐, 必须是16的倍数
 
 ## 4.注意点
-    - 如果自定义类有继承关系, 如 Student 继承于 Person
-    - 注意内存对齐问题
+    - 如果自定义类有继承关系, 如 Student 继承于 Person, 要继续父类的成员变量
+    - 注意内存对齐问题, iOS 分配内存问题
 
 
 参考:
