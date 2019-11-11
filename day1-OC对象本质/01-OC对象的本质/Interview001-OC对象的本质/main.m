@@ -11,6 +11,8 @@
 #import <malloc/malloc.h>
 
 /**
+ xcrun -sdk iphoneos clang -arch arm64 -rewrite-objc main.m -o main.cpp
+ sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
  https://juejin.im/post/5abdd56df265da2396127e6b
  
 @interface NSObject <NSObject> {
