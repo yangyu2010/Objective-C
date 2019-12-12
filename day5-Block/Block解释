@@ -1,0 +1,43 @@
+Block 底层也是 OC 对象 为什么说了?
+继承于NSBlock, NSBlock继承于NSObject
+
+底层就是一个结构体
+struct {
+	struct __block_impl impl;
+    struct __main_block_desc_0* Desc; 
+
+    // 其他引用参数
+}
+
+struct __block_impl {
+    void *isa;        // 8
+    int Flags;        // 4
+    int Reserved;     // 4
+    void *FuncPtr;    // 8
+};
+
+struct __main_block_desc_0 {
+    size_t reserved;
+    size_t Block_size;
+};
+
+
+局部变量
+	auto 引用 直接赋值
+	static 引用 指针引用
+全局变量
+	不引用 直接访问
+
+
+Block 类型
+Global 数据区
+Malloc 堆
+Stack  栈
+
+Global 没有引用 auto 变量
+Stack 引用了 auto 变量
+Malloc Stack 进行了 copy
+
+
+
+
