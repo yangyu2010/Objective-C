@@ -106,7 +106,15 @@ struct __AtAutoreleasePool {
 };
 
 #define __OFFSETOFIVAR__(TYPE, MEMBER) ((long long) &((TYPE *)0)->MEMBER)
-static __NSConstantStringImpl __NSConstantStringImpl__var_folders_9y_kcyxtgss5f90mrqfxnh73dj40000gn_T_main_e7df2d_mi_0 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"in blok",7};
+static __NSConstantStringImpl __NSConstantStringImpl__var_folders_xx_l94j9wz16xb3sczwxhsbf3340000gp_T_main_62cfb8_mi_0 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"2",1};
+static __NSConstantStringImpl __NSConstantStringImpl__var_folders_xx_l94j9wz16xb3sczwxhsbf3340000gp_T_main_62cfb8_mi_1 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"abc",3};
+static __NSConstantStringImpl __NSConstantStringImpl__var_folders_xx_l94j9wz16xb3sczwxhsbf3340000gp_T_main_62cfb8_mi_2 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"Jack",4};
+static __NSConstantStringImpl __NSConstantStringImpl__var_folders_xx_l94j9wz16xb3sczwxhsbf3340000gp_T_main_62cfb8_mi_3 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"%d",2};
+static __NSConstantStringImpl __NSConstantStringImpl__var_folders_xx_l94j9wz16xb3sczwxhsbf3340000gp_T_main_62cfb8_mi_4 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"%@",2};
+static __NSConstantStringImpl __NSConstantStringImpl__var_folders_xx_l94j9wz16xb3sczwxhsbf3340000gp_T_main_62cfb8_mi_5 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"%f",2};
+static __NSConstantStringImpl __NSConstantStringImpl__var_folders_xx_l94j9wz16xb3sczwxhsbf3340000gp_T_main_62cfb8_mi_6 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"%@",2};
+static __NSConstantStringImpl __NSConstantStringImpl__var_folders_xx_l94j9wz16xb3sczwxhsbf3340000gp_T_main_62cfb8_mi_7 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"%d",2};
+static __NSConstantStringImpl __NSConstantStringImpl__var_folders_xx_l94j9wz16xb3sczwxhsbf3340000gp_T_main_62cfb8_mi_8 __attribute__ ((section ("__DATA, __cfstring"))) = {__CFConstantStringClassReference,0x000007c8,"%@",2};
 
 
 
@@ -562,13 +570,49 @@ extern "C" {
 typedef struct fd_set {
  __int32_t fds_bits[((((1024) % ((sizeof(__int32_t) * 8))) == 0) ? ((1024) / ((sizeof(__int32_t) * 8))) : (((1024) / ((sizeof(__int32_t) * 8))) + 1))];
 } fd_set;
+
+int __darwin_check_fd_set_overflow(int, const void *, int) __attribute__((__weak_import__));
+}
+
+inline __attribute__ ((__always_inline__)) int
+__darwin_check_fd_set(int _a, const void *_b)
+{
+ if ((uintptr_t)&__darwin_check_fd_set_overflow != (uintptr_t) 0) {
+
+
+
+  return __darwin_check_fd_set_overflow(_a, _b, 0);
+
+ } else {
+  return 1;
+ }
 }
 
 
-static inline int
-__darwin_fd_isset(int _n, const struct fd_set *_p)
+inline __attribute__ ((__always_inline__)) int
+__darwin_fd_isset(int _fd, const struct fd_set *_p)
 {
- return _p->fds_bits[(unsigned long)_n / (sizeof(__int32_t) * 8)] & ((__int32_t)(((unsigned long)1) << ((unsigned long)_n % (sizeof(__int32_t) * 8))));
+ if (__darwin_check_fd_set(_fd, (const void *) _p)) {
+  return _p->fds_bits[(unsigned long)_fd / (sizeof(__int32_t) * 8)] & ((__int32_t)(((unsigned long)1) << ((unsigned long)_fd % (sizeof(__int32_t) * 8))));
+ }
+
+ return 0;
+}
+
+inline __attribute__ ((__always_inline__)) void
+__darwin_fd_set(int _fd, struct fd_set *const _p)
+{
+ if (__darwin_check_fd_set(_fd, (const void *) _p)) {
+  (_p->fds_bits[(unsigned long)_fd / (sizeof(__int32_t) * 8)] |= ((__int32_t)(((unsigned long)1) << ((unsigned long)_fd % (sizeof(__int32_t) * 8)))));
+ }
+}
+
+inline __attribute__ ((__always_inline__)) void
+__darwin_fd_clr(int _fd, struct fd_set *const _p)
+{
+ if (__darwin_check_fd_set(_fd, (const void *) _p)) {
+  (_p->fds_bits[(unsigned long)_fd / (sizeof(__int32_t) * 8)] &= ~((__int32_t)(((unsigned long)1) << ((unsigned long)_fd % (sizeof(__int32_t) * 8)))));
+ }
 }
 
 
@@ -606,8 +650,6 @@ typedef __darwin_fsblkcnt_t fsblkcnt_t;
 typedef __darwin_fsfilcnt_t fsfilcnt_t;
 typedef __builtin_va_list va_list;
 typedef __builtin_va_list __gnuc_va_list;
-
-
 typedef int __darwin_nl_item;
 typedef int __darwin_wctrans_t;
 
@@ -7141,8 +7183,7 @@ extern "C" __attribute__((visibility("default"))) SEL _Nonnull sel_registerName(
 extern "C" __attribute__((visibility("default"))) const char * _Nonnull object_getClassName(id _Nullable obj)
     __attribute__((availability(macosx,introduced=10.0))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0)));
 extern "C" __attribute__((visibility("default"))) void * _Nullable object_getIndexedIvars(id _Nullable obj)
-    __attribute__((availability(macosx,introduced=10.0))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0)))
-                        ;
+    __attribute__((availability(macosx,introduced=10.0))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0)));
 extern "C" __attribute__((visibility("default"))) BOOL sel_isMapped(SEL _Nonnull sel)
     __attribute__((availability(macosx,introduced=10.0))) __attribute__((availability(ios,introduced=2.0))) __attribute__((availability(tvos,introduced=9.0))) __attribute__((availability(watchos,introduced=1.0)));
 extern "C" __attribute__((visibility("default"))) SEL _Nonnull sel_getUid(const char * _Nonnull str)
@@ -33798,11 +33839,18 @@ struct NSUUID_IMPL {
 
 #pragma clang assume_nonnull end
 
+int num = 10;
+NSString *banji = (NSString *)&__NSConstantStringImpl__var_folders_xx_l94j9wz16xb3sczwxhsbf3340000gp_T_main_62cfb8_mi_0;
+
 
 struct __main_block_impl_0 {
   struct __block_impl impl;
   struct __main_block_desc_0* Desc;
-  __main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, int flags=0) {
+  int age;
+  NSString *str;
+  double *height;
+  NSString **name;
+  __main_block_impl_0(void *fp, struct __main_block_desc_0 *desc, int _age, NSString *_str, double *_height, NSString **_name, int flags=0) : age(_age), str(_str), height(_height), name(_name) {
     impl.isa = &_NSConcreteStackBlock;
     impl.Flags = flags;
     impl.FuncPtr = fp;
@@ -33810,25 +33858,42 @@ struct __main_block_impl_0 {
   }
 };
 static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
+  int age = __cself->age; // bound by copy
+  NSString *str = __cself->str; // bound by copy
+  double *height = __cself->height; // bound by copy
+  NSString **name = __cself->name; // bound by copy
 
-            NSLog((NSString *)&__NSConstantStringImpl__var_folders_9y_kcyxtgss5f90mrqfxnh73dj40000gn_T_main_e7df2d_mi_0);
+            NSLog((NSString *)&__NSConstantStringImpl__var_folders_xx_l94j9wz16xb3sczwxhsbf3340000gp_T_main_62cfb8_mi_3, age);
+            NSLog((NSString *)&__NSConstantStringImpl__var_folders_xx_l94j9wz16xb3sczwxhsbf3340000gp_T_main_62cfb8_mi_4, str);
+
+            NSLog((NSString *)&__NSConstantStringImpl__var_folders_xx_l94j9wz16xb3sczwxhsbf3340000gp_T_main_62cfb8_mi_5, (*height));
+            NSLog((NSString *)&__NSConstantStringImpl__var_folders_xx_l94j9wz16xb3sczwxhsbf3340000gp_T_main_62cfb8_mi_6, (*name));
+
+
+            NSLog((NSString *)&__NSConstantStringImpl__var_folders_xx_l94j9wz16xb3sczwxhsbf3340000gp_T_main_62cfb8_mi_7, num);
+            NSLog((NSString *)&__NSConstantStringImpl__var_folders_xx_l94j9wz16xb3sczwxhsbf3340000gp_T_main_62cfb8_mi_8, banji);
         }
+static void __main_block_copy_0(struct __main_block_impl_0*dst, struct __main_block_impl_0*src) {_Block_object_assign((void*)&dst->str, (void*)src->str, 3/*BLOCK_FIELD_IS_OBJECT*/);_Block_object_assign((void*)&dst->name, (void*)src->name, 3/*BLOCK_FIELD_IS_OBJECT*/);}
+
+static void __main_block_dispose_0(struct __main_block_impl_0*src) {_Block_object_dispose((void*)src->str, 3/*BLOCK_FIELD_IS_OBJECT*/);_Block_object_dispose((void*)src->name, 3/*BLOCK_FIELD_IS_OBJECT*/);}
 
 static struct __main_block_desc_0 {
   size_t reserved;
   size_t Block_size;
-} __main_block_desc_0_DATA = { 0, sizeof(struct __main_block_impl_0)};
+  void (*copy)(struct __main_block_impl_0*, struct __main_block_impl_0*);
+  void (*dispose)(struct __main_block_impl_0*);
+} __main_block_desc_0_DATA = { 0, sizeof(struct __main_block_impl_0), __main_block_copy_0, __main_block_dispose_0};
 int main(int argc, const char * argv[]) {
     /* @autoreleasepool */ { __AtAutoreleasePool __autoreleasepool; 
 
 
+        int age = 10;
+        NSString *str = (NSString *)&__NSConstantStringImpl__var_folders_xx_l94j9wz16xb3sczwxhsbf3340000gp_T_main_62cfb8_mi_1;
+        static double height = 178.0;
+        static NSString *name = (NSString *)&__NSConstantStringImpl__var_folders_xx_l94j9wz16xb3sczwxhsbf3340000gp_T_main_62cfb8_mi_2;
+        void (*block1)(void) = ((void (*)())&__main_block_impl_0((void *)__main_block_func_0, &__main_block_desc_0_DATA, age, str, &height, &name, 570425344));
 
-
-
-        void (*block)(void) = &__main_block_impl_0(__main_block_func_0, &__main_block_desc_0_DATA));
-
-        ((__block_impl *)((__block_impl *)block)->FuncPtr)((__block_impl *)block);
-
+        ((void (*)(__block_impl *))((__block_impl *)block1)->FuncPtr)((__block_impl *)block1);
     }
     return 0;
 }
