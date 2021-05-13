@@ -15,8 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Person (Test2)
 
-- (void)test;
-+ (void)testClass;
+- (void)test2;
++ (void)testClass2;
 
 @end
 

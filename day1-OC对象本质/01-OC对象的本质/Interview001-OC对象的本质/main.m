@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import <malloc/malloc.h>
 
+
 /**
  xcrun -sdk iphoneos clang -arch arm64 -rewrite-objc main.m -o main.cpp
  sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
@@ -52,9 +53,11 @@ struct Person_IMPL {
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
+        
         // MARK:- NSObject
         
         NSObject *obj = [[NSObject alloc] init];
+        
         
         // 8
         // Class's ivar size rounded up to a pointer-size boundary.

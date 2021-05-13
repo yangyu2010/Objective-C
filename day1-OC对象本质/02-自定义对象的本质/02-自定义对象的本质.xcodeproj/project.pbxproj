@@ -23,6 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		861F9CF0262DAE98002EFD92 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		86CCC31D23717A6D00C44A7D /* 02-自定义对象的本质 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "02-自定义对象的本质"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86CCC32023717A6D00C44A7D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		86CCC32723717B5A00C44A7D /* main-arm64.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "main-arm64.cpp"; sourceTree = "<group>"; };
@@ -58,6 +59,7 @@
 		86CCC31F23717A6D00C44A7D /* 02-自定义对象的本质 */ = {
 			isa = PBXGroup;
 			children = (
+				861F9CF0262DAE98002EFD92 /* main.cpp */,
 				86CCC32723717B5A00C44A7D /* main-arm64.cpp */,
 				86CCC32023717A6D00C44A7D /* main.m */,
 			);
@@ -95,6 +97,7 @@
 				TargetAttributes = {
 					86CCC31C23717A6D00C44A7D = {
 						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -241,16 +244,33 @@
 		86CCC32523717A6D00C44A7D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "02-自定义对象的本质/02-自定义对象的本质-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		86CCC32623717A6D00C44A7D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "02-自定义对象的本质/02-自定义对象的本质-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

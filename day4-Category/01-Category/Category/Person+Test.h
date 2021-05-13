@@ -14,8 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) int age;
 
-- (void)test;
-+ (void)testClass;
+- (void)test1;
++ (void)testClass1;
 
 @end
 

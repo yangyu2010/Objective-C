@@ -10,10 +10,10 @@
 
 @implementation Student
 
-//+ (void)load
-//{
-//    NSLog(@"Student load");
-//}
++ (void)load
+{
+    NSLog(@"Student load");
+}
 
 
 @end

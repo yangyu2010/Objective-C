@@ -43,10 +43,10 @@ void printMethodNamesOfClass(Class cls)
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
 
-        NSLog(@"-------");
-        [Student load];
-//        printMethodNamesOfClass([Person class]);
-//        printMethodNamesOfClass(object_getClass([Person class]));
+//        NSLog(@"-------");
+//        [Student load];
+        printMethodNamesOfClass([Person class]);
+        printMethodNamesOfClass(object_getClass([Person class]));
         
     }
     return 0;

@@ -29,6 +29,7 @@
 		864546F32397912D001E26F3 /* main2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main2.cpp; sourceTree = "<group>"; };
 		864546F923979F77001E26F3 /* main3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main3.cpp; sourceTree = "<group>"; };
 		864546FB2397A45A001E26F3 /* main4.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main4.cpp; sourceTree = "<group>"; };
+		86A4991A264AA41F00BB5163 /* main_cpp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_cpp.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +62,7 @@
 		864546E823978A74001E26F3 /* Block */ = {
 			isa = PBXGroup;
 			children = (
+				86A4991A264AA41F00BB5163 /* main_cpp.cpp */,
 				864546FB2397A45A001E26F3 /* main4.cpp */,
 				864546F923979F77001E26F3 /* main3.cpp */,
 				864546F32397912D001E26F3 /* main2.cpp */,

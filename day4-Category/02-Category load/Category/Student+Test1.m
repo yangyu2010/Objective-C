@@ -13,9 +13,9 @@
 
 @implementation Student (Test1)
 
-//+ (void)load
-//{
-//    NSLog(@"Student (Test1) load");
-//}
++ (void)load
+{
+    NSLog(@"Student (Test1) load");
+}
 
 @end

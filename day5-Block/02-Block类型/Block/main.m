@@ -31,12 +31,15 @@ struct __main_block_impl_0 {
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
 
-        int age = 10;
-        void (^block1)(void) = ^{
+        static int age = 10;
+        void (^block1)(int a) = ^(int a){
             NSLog(@"%d", age);
         };
         
-        NSLog(@"%@", [[block1 copy] class]);
+        
+        NSLog(@"%@", [block1 class]);
+
+//        NSLog(@"%@", [[block1 copy] class]);
 
         
 //        // 堆：动态分配内存,需要程序员申请申请，也需要程序员自己管理内存

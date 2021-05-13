@@ -18,6 +18,13 @@
 //    NSLog(@"_setAge: %d", age);
 //}
 
+//- (void)setIsAge:(int)age {
+//    NSLog(@"_setIsAge: %d", age);
+//}
+
+- (void)_setIsAge:(int)age {
+    NSLog(@"_setIsAge: %d", age);
+}
 
 + (BOOL)accessInstanceVariablesDirectly {
     return YES;

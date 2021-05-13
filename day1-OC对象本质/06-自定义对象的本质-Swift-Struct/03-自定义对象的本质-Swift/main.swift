@@ -9,33 +9,25 @@
 import Foundation
 
 struct Person {
-    var age: Int = 0
+//    var age: Int = 0
     let gender: Bool
+//    var name: String = ""
     
     init(gender: Bool, age: Int) {
         self.gender = gender
-        self.age = age
+//        self.age = age
     }
 }
-
 
 var p = Person(gender: true, age: 11)
 
 let structInstanceAddress = MemoryAddress(of: &p)
 print(structInstanceAddress)
 
-//print(p.name, p.age)
+// print(p.name, p.age)
 
 let size = MemoryLayout<Person>.size
 print(size)
 
 let instanceSize = MemoryLayout<Person>.size(ofValue: p)
 print(instanceSize)
-
-
-
-
-
-
-
-
