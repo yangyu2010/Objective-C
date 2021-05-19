@@ -67,13 +67,13 @@ int main(int argc, const char * argv[]) {
         Student *s = [[Student alloc] init];
         s->_no = 3;
 //        s->_age = 11;
-        s->_name = @"a";
+//        s->_name = @"a";
 //        char* cstring = "Try harder";
 //        s->_s = @"1";
 
-//        NSString *name = @"abc";
+        NSString *name = @"abc";
 //        NSString *name = [[NSString alloc] initWithFormat:@"abc"];;
-//        s->_name = name;
+        s->_name = name;
 //        NSData *c_string_data = [name dataUsingEncoding:NSUTF8StringEncoding];
 //        char const *c_string = c_string_data.bytes;
 //        NSLog(@"%s", c_string);
