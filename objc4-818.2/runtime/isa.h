@@ -70,7 +70,7 @@
         uintptr_t has_sidetable_rc  : 1;                                       \
         uintptr_t extra_rc          : 8
 #     define RC_ONE   (1ULL<<56)
-#     define RC_HALF  (1ULL<<7)
+#     define RC_HALF  c(1ULL<<7)
 #   else
 #     define ISA_MASK        0x0000000ffffffff8ULL
 #     define ISA_MAGIC_MASK  0x000003f000000001ULL
