@@ -2410,6 +2410,7 @@ SInt32 CFRunLoopRunSpecific(CFRunLoopRef rl, CFStringRef modeName, CFTimeInterva
     // 通知Observers 进入RunLoop
     __CFRunLoopDoObservers(rl, currentMode, kCFRunLoopEntry);
     
+    // 做事情
 	result = __CFRunLoopRun(rl, currentMode, seconds, returnAfterSourceHandled, previousMode);
     
     // 通知Observers 离开RunLoop
