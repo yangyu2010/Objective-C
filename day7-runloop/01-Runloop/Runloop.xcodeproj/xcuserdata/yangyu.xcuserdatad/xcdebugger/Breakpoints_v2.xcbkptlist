@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "F65EDFC9-7816-441D-B08B-0634D1C973B6"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1ABC29DA-AF45-44E8-AAD3-850FCC32879C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Runloop/ViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "-touchesBegan:withEvent:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1ABC29DA-AF45-44E8-AAD3-850FCC32879C - 822e739a065779f3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ViewController touchesBegan:withEvent:]"
+                  moduleName = "Runloop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yangyu/iOS/Objective-C/day7-runloop/01-Runloop/Runloop/ViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "87">
+               </Location>
+               <Location
+                  uuid = "1ABC29DA-AF45-44E8-AAD3-850FCC32879C - 6da25c0e86927165"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__41-[ViewController touchesBegan:withEvent:]_block_invoke"
+                  moduleName = "Runloop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yangyu/iOS/Objective-C/day7-runloop/01-Runloop/Runloop/ViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "51">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
