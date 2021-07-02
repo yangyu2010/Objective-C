@@ -119,7 +119,7 @@ static int32_t __CFRunLoopRun(CFRunLoopRef rl, CFRunLoopModeRef rlm, CFTimeInter
             __CFRunLoopServiceMachPort(waitSet, &msg, sizeof(msg_buffer), &livePort, poll ? 0 : TIMEOUT_INFINITY, &voucherState, &voucherCopy);
         } while (1);
 
-        // 如果没有Source1 通知Observes结束休眠
+        // 通知Observes结束休眠
         __CFRunLoopUnsetSleeping(rl);
         __CFRunLoopDoObservers(rl, rlm, kCFRunLoopAfterWaiting);
 
@@ -158,4 +158,18 @@ handle_msg:;
     
     return retVal;
 }
+```
+
+##5.RunLoop状态
+```
+/* Run Loop Observer Activities */
+typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) {
+    kCFRunLoopEntry = (1UL << 0),           /// 进入
+    kCFRunLoopBeforeTimers = (1UL << 1),    /// 即将处理Timers
+    kCFRunLoopBeforeSources = (1UL << 2),   /// 即将处理Sources
+    kCFRunLoopBeforeWaiting = (1UL << 5),   /// 即将休眠
+    kCFRunLoopAfterWaiting = (1UL << 6),    /// 结束休眠
+    kCFRunLoopExit = (1UL << 7),            /// 退出
+    kCFRunLoopAllActivities = 0x0FFFFFFFU
+};
 ```
